@@ -1,0 +1,1 @@
+﻿{"TableName":"QueueEntries","Item":{"clinicId":{"S":"8bd1f0c2-3a0b-4d6e-9b2f-6a4f8a2f3c9d"},"tokenId":{"S":"31"},"token":{"N":"31"},"date":{"S":"2025-10-16T22:06:58.0741280+05:30"},"status":{"S":"waiting"},"createdBy":{"S":"kiosk"}}}

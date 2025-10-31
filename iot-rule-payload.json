@@ -1,0 +1,14 @@
+{
+  "sql": "SELECT *, 'kiosk' AS createdBy FROM 'queue/tokens'",
+  "ruleDisabled": false,
+  "actions": [
+    {
+      "dynamoDBv2": {
+        "roleArn": "arn:aws:iam::028255564606:role/iot_dynamo_writer",
+        "putItem": {
+          "tableName": "QueueEntries"
+        }
+      }
+    }
+  ]
+}

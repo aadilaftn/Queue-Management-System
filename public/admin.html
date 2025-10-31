@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Queue - Admin</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <div style="display: flex; align-items: center; gap: 12px">
+          <div class="title">Admin - Clinic Queue</div>
+          <div class="tag muted">Manage & serve tokens</div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <div class="card">
+        <div style="display: flex; align-items: center; gap: 12px">
+          <h2 class="h1">Admin Panel</h2>
+          <div class="right">
+            <button id="resetBtn" class="btn btn-danger">Reset Queue</button>
+          </div>
+        </div>
+
+        <h3 class="mt-2">All Entries</h3>
+        <div style="overflow: auto">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Token</th>
+                <th>Status</th>
+                <th>Taken</th>
+                <th>Wait (s)</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="rows"></tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+
+    <div class="footer">Admin console · Clinic Queue System</div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io();
+
+      document
+        .getElementById("resetBtn")
+        .addEventListener("click", async () => {
+          if (!confirm("Reset queue?")) return;
+          await fetch("/api/reset", { method: "POST" });
+        });
+
+      function render(data) {
+        const rows = document.getElementById("rows");
+        rows.innerHTML = "";
+        data.entries
+          .slice()
+          .reverse()
+          .forEach((e) => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `<td>#${e.token}</td><td>${
+              e.status
+            }</td><td>${new Date(e.timestamp).toLocaleString()}</td><td>${
+              e.waitedSeconds || ""
+            }</td><td></td>`;
+            const actions = tr.querySelector("td:last-child");
+            if (e.status === "waiting") {
+              const serveBtn = document.createElement("button");
+              serveBtn.innerText = "Serve";
+              serveBtn.onclick = () =>
+                socket.emit("admin_action", {
+                  action: "serve",
+                  token: e.token,
+                });
+              const skipBtn = document.createElement("button");
+              skipBtn.innerText = "Skip";
+              skipBtn.onclick = () =>
+                socket.emit("admin_action", { action: "skip", token: e.token });
+              actions.appendChild(serveBtn);
+              actions.appendChild(skipBtn);
+            }
+            rows.appendChild(tr);
+          });
+      }
+
+      socket.on("queue_update", (data) => render(data));
+    </script>
+  </body>
+</html>

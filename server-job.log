@@ -1,0 +1,25 @@
+﻿DYNAMO_ENABLE set to true ; DYNAMODB_TABLE= QueueEntries
+DynamoDB sync enabled for table QueueEntries
+Server running on http://localhost:3000
+DynamoDB connectivity check: OK
+Loaded 33 items from DynamoDB into local store
+socket connected 0giqmOeV9raS1GyzAAAB
+Loaded 33 items from DynamoDB into local store
+Loaded 33 items from DynamoDB into local store
+Loaded 33 items from DynamoDB into local store
+Loaded 33 items from DynamoDB into local store
+Loaded 33 items from DynamoDB into local store
+node.exe : Blocked web token creation - Dynamo enabled and no admin secret provided or not from 
+localhost
+At line:7 char:3
++   & node server.js *>&1 | Out-File -FilePath .\server-job.log -Encodi ...
++   ~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Blocked web tok... from localhost:String) [], RemoteExcep 
+   tion
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Loaded 33 items from DynamoDB into local store
+Loaded 33 items from DynamoDB into local store
+Loaded 33 items from DynamoDB into local store
+Loaded 33 items from DynamoDB into local store
+Loaded 33 items from DynamoDB into local store

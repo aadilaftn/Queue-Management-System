@@ -1,0 +1,8 @@
+﻿{
+  "clinicId": {"S": "' + $clinic + '"},
+  "tokenId": {"S": "' + $token + '"},
+  "token": {"N": "' + $token + '"},
+  "date": {"S": "' + $date + '"},
+  "status": {"S": "waiting"},
+  "createdBy": {"S": "kiosk"}
+}

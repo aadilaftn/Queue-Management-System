@@ -1,0 +1,23 @@
+﻿{
+    "TableName":  "QueueEntries",
+    "Item":  {
+                 "createdBy":  {
+                                   "S":  "kiosk"
+                               },
+                 "token":  {
+                               "N":  "31"
+                           },
+                 "date":  {
+                              "S":  "2025-10-16T22:06:22.5410067+05:30"
+                          },
+                 "clinicId":  {
+                                  "S":  "8bd1f0c2-3a0b-4d6e-9b2f-6a4f8a2f3c9d"
+                              },
+                 "tokenId":  {
+                                 "S":  "31"
+                             },
+                 "status":  {
+                                "S":  "waiting"
+                            }
+             }
+}
